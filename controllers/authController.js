@@ -68,13 +68,24 @@ module.exports.login_user = async (req, res) =>{
     }
 };
 
-module.exports.user_info = async (req, res) =>{
-    try {
-        const user = await User.findById(req.user).select('-password');
-        console.log(req.user)
-        res.json(user);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-}
+
+module.exports.logout_get = (req, res) => {
+    //get the cookie and change maxAgo to i millisecond so that the cookie expires and we logout the current user
+    res.cookie('jwt', '', { maxAge: 1 });
+    //after logout successful redirect the user to homepage
+    res.status(200).json('logout successful');
+};
+
+
+//this was moved to usersController
+// module.exports.user_info = async (req, res) =>{
+//     try {
+//         const user = await User.findById(req.user).select('-password');
+//         console.log(req.user)
+//         console.log(req.cookies.jwt)
+//         res.json(user);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server Error');
+//     }
+// }

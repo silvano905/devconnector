@@ -66,3 +66,14 @@ module.exports.create_user = async (req, res) =>{
         res.status(400).json({ errors });
     }
 };
+
+//get user info
+module.exports.user_info = async (req, res) =>{
+    try {
+        const user = await User.findById(req.user).select('-password');
+        res.json(user);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}

@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://silvano:Liverpool9090@nodemongo.hi8jw.mongodb.net/devconnector?retryWrites=true&w=majority",
-  "jwtSecret": "silvanovaldezxx"
-}
